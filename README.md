@@ -10,9 +10,12 @@ If you succeed in starting the docker containers you will get:
 - Several former examinations - the examination as pdf, the code and the executeable code 
 - a nice way to play and deploy webpages with php, html, css etc.
 
+## Disclaimer
+When running docker containers you should be aware that this might expose your computer to some threats. You do this on your own risk! I am not liable for any loss whether direct, indirect, incidental or consequential, arising out of use of this project.
+
 ## Initial Setup
 
-In the folder `EWA_Docker` where the `docker-compose.yml` file is located, create a file called `env.txt` assigning the root password for your database as environment variable (check `env_example.txt`).
+In the folder `EWA_Docker` where the `docker-compose.yml` file is located, create a file called `env.txt` in order to assign a root password for your database as environment variable (check `env_example.txt`).
 
 ## Start of the Containers 
 Open a console window and start your local EWA-docker with `docker-compose up -d`. This will take a while when you start it the first time since docker loads and assembles all images (Next time it will be much faster!).
@@ -59,3 +62,7 @@ To do so stop the running containers `docker-compose down` and delete db volume 
 - There is a `Makefile` that includes several usefull calls for docker e.g. you can call `make start` instead of `docker-compose up -d`.
 
 - You will find the Apache Logfiles in the folder `Log` of your src folder. So you can access it from outside of the container.
+- There are well known attacks on computers using docker and containers. So here are some basic recommendations for security
+  - Please make sure that your firewall is always up and running.
+  - In the settings of docker you will find the option `Expose daemon on tcp://localhost:2375 without TLS`. If you do not need this feature you should switch it off for security reasons.
+  - Start the containers only when you need it.
