@@ -2,7 +2,7 @@ start:
 	docker-compose up -d
 
 console:
-	docker exec -it ewa_docker_php-apache_1 bash
+	docker exec -it ewa_prak_studi_docker_php-apache_1 bash
 
 stop:
 	docker-compose down
@@ -15,7 +15,7 @@ build:
 
 clean:
 	docker-compose down -v
-	docker rmi ewa_docker_php-apache
+	docker rmi ewa_prak_studi_docker_php-apache
 	docker rmi mariadb
 	docker rmi phpmyadmin/phpmyadmin
 
