@@ -1,0 +1,61 @@
+# EWA Docker Setup
+You know about Docker and Docker is running on yur system? You do not want to mess up your system by installing a web server and all the fancy software you need for EWA?
+
+In that case you can simply start several docker containers and you are all set for EWA.
+
+If you succeed in starting the docker containers you will get:
+- all demos and exmaples that are linked from the powerpoint presentation of the lecture
+- all databases that are used for the examples
+- one solutions of the lab of students and one solution of Ute
+- Several former examinations - the examination as pdf, the code and the executeable code 
+- a nice way to play and deploy webpages with php, html, css etc.
+
+## Initial Setup
+
+In the folder `EWA_Docker` where the `docker-compose.yml` file is located, create a file called `env.txt` assigning the root password for your database as environment variable (check `env_example.txt`).
+
+## Start of the Containers 
+Open a console window and start your local EWA-docker with `docker-compose up -d`. This will take a while when you start it the first time since docker loads and assembles all images (Next time it will be much faster!).
+Now you should have 3 containers running:
+- php-apache: Containing Apache Webserver and PHP
+- MariaDB: your database server for SQL
+- PHPmyAdmin: web-based application to modify your database 
+
+All files in `src` are linked into the apache-php container, so you can see your changes while developing in that folder.
+Furthermore this folder contains all examples and demos for the lecture. Everything is set up and deployed automatically.
+
+## Test the Installation
+
+Go to [http://localhost](http://localhost) to check the served code. After installation you will see the content of the file `index.php` in the src-folder. 
+You will get an error if there is no file called `index.php` or `index.html` in your `src` folder (e.g. [http://localhost/Klausuren/19SS/index.php](http://localhost/Klausuren/19SS/index.php))
+
+You can also select a file by specifying a path starting from the src-folder the file at the end of the URL.
+
+## Stop the Containers
+Call `docker-compose down` to stop the containers.
+
+## Development
+
+To connect to the running mariadb instance use the hostname `mariadb`.
+Example for php:
+
+```php
+new MySQLi("mariadb", "your_user", "your_secureuserpw", "your_database");
+```
+For normal access to the database without serious permissions please use the User `puclic` and the password `public`. 
+
+
+### PHPmyAdmin
+
+To access `phpmyadmin` go to [http://localhost/phpmyadmin](http://localhost/phpmyadmin). This will forward you to the Docker container of `phpmyamin` at [http://localhost:8081/](http://localhost:8081/)
+
+Use the credentials you have set in the `env.txt` file for `root`. The database will be stored persistently (as long as you do not delete the containers). Nevertheless you should better export new database schemes into a sql-file.
+
+### Mayor Changes
+If you have changed your `env.txt` or if you want to start from scratch you have to delete and recreate the database volume. Be aware that your data base entries will be lost!
+To do so stop the running containers `docker-compose down` and delete db volume `docker volume rm ewa_mariadb`. 
+
+### Misc
+- There is a `Makefile` that includes several usefull calls for docker e.g. you can call `make start` instead of `docker-compose up -d`.
+
+- You will find the Apache Logfiles in the folder `Log` of your src folder. So you can access it from outside of the container.
