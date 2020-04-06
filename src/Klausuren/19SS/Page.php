@@ -15,7 +15,7 @@ abstract class Page
 			throw new Exception($this->db->error);
 	}
 
-	protected function __destruct() {
+	public function __destruct() {
 		$this->db->close();
 	}
 

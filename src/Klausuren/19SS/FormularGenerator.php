@@ -16,7 +16,7 @@ class FormularGenerator extends Page
 		// to do: instantiate attribute objects
 	}
 
-	protected function __destruct() {
+	public function __destruct() {
 		// to do: if necessary, destruct attribute objects representing substructures/blocks
 		parent::__destruct();
 	}
