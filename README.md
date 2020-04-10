@@ -13,9 +13,14 @@ If you succeed in starting the docker containers you will get:
 ## Disclaimer
 When running docker containers you should be aware that this might expose your computer to some threats. You do this on your own risk! I am not liable for any loss whether direct, indirect, incidental or consequential, arising out of use of this project.
 
+## Install docker
+
+Install the `docker` tools as explained here: https://docs.docker.com/engine/install/
+For Linux you need to install docker-compose seperatly: https://docs.docker.com/compose/install/
+
 ## Initial Setup
 
-In the folder `EWA_Docker` where the `docker-compose.yml` file is located, create a file called `env.txt` in order to assign a root password for your database as environment variable (check `env_example.txt`).
+In the folder root folder `EWA_Docker` where the `docker-compose.yml` file is located, create a file called `env.txt` in order to assign a root password for your database as environment variable (copy the content from the file `env_example.txt` for the syntax).
 
 ## Start of the Containers 
 Open a console window and start your local EWA-docker with `docker-compose up -d`. This will take a while when you start it the first time since docker loads and assembles all images (Next time it will be much faster!).
@@ -45,7 +50,7 @@ Example for php:
 ```php
 new MySQLi("mariadb", "your_user", "your_secureuserpw", "your_database");
 ```
-For normal access to the database without serious permissions please use the User `puclic` and the password `public`. 
+For normal access to the database without serious permissions please use the User `public` and the password `public`. 
 
 
 ### PHPmyAdmin
