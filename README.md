@@ -4,9 +4,7 @@ You know about Docker and Docker is running on yur system? You do not want to me
 In that case you can simply start several docker containers and you are all set for EWA.
 
 If you succeed in starting the docker containers you will get:
-- all demos and exmaples that are linked from the powerpoint presentation of the lecture
-- all databases that are used for the examples
-- one solutions of the lab of students and one solution of Ute
+- all demos and examples that are linked from the powerpoint presentation of the lecture
 - Several former examinations - the examination as pdf, the code and the executeable code 
 - a nice way to play and deploy webpages with php, html, css etc.
 
