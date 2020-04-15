@@ -54,20 +54,20 @@ INSERT INTO `article` (`id`, `name`, `picture`, `price`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `order`
+-- Tabellenstruktur für Tabelle `ordering`
 --
 
-CREATE TABLE `order` (
+CREATE TABLE `ordering` (
   `id` int(11) NOT NULL,
   `address` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Daten für Tabelle `order`
+-- Daten für Tabelle `ordering`
 --
 
-INSERT INTO `order` (`id`, `address`, `timestamp`) VALUES
+INSERT INTO `ordering` (`id`, `address`, `timestamp`) VALUES
 (16, 'Birkenweg 7, 2. Stock, Telefon: 12325, Mustermann', '2020-04-13 12:58:56'),
 (17, 'Schöfferstr. 8b, 1637733, Musterfrau', '2020-04-13 13:01:49');
 
@@ -108,9 +108,9 @@ ALTER TABLE `article`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indizes für die Tabelle `order`
+-- Indizes für die Tabelle `ordering`
 --
-ALTER TABLE `order`
+ALTER TABLE `ordering`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -132,9 +132,9 @@ ALTER TABLE `article`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT für Tabelle `order`
+-- AUTO_INCREMENT für Tabelle `ordering`
 --
-ALTER TABLE `order`
+ALTER TABLE `ordering`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
@@ -151,7 +151,7 @@ ALTER TABLE `ordered_articles`
 -- Constraints der Tabelle `ordered_articles`
 --
 ALTER TABLE `ordered_articles`
-  ADD CONSTRAINT `ordered_articles_ibfk_1` FOREIGN KEY (`f_order_id`) REFERENCES `order` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `ordered_articles_ibfk_1` FOREIGN KEY (`f_order_id`) REFERENCES `ordering` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `ordered_articles_ibfk_2` FOREIGN KEY (`f_article_id`) REFERENCES `article` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
