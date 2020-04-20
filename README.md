@@ -57,7 +57,7 @@ To access `phpmyadmin` go to [http://localhost/phpmyadmin](http://localhost/phpm
 
 Use the credentials you have set in the `env.txt` file for `root`. The database will be stored persistently (as long as you do not delete the containers). Nevertheless you should better export new database schemes into a sql-file.
 
-### Mayor Changes
+### Major Changes
 If you have changed your `env.txt` or if you want to start from scratch you have to delete and recreate the database volume. Be aware that your data base entries will be lost!
 To do so stop the running containers `docker-compose down` and delete db volume `docker volume rm ewa_mariadb`. 
 
