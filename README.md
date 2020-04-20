@@ -13,11 +13,12 @@ When running docker containers you should be aware that this might expose your c
 ## Install docker
 
 Install the `docker` tools as explained here: https://docs.docker.com/engine/install/
+
 For Linux you need to install docker-compose seperatly: https://docs.docker.com/compose/install/
 
 ## Initial Setup
 
-In the folder root folder `EWA_Docker` where the `docker-compose.yml` file is located, create a file called `env.txt` in order to assign a root password for your database as environment variable (copy the content from the file `env_example.txt` for the syntax).
+In the root folder `EWA_Docker` where the `docker-compose.yml` file is located, create a file called `env.txt` in order to assign a root password for your database as environment variable (copy the content from the file `env_example.txt` for the syntax).
 
 ## Start of the Containers 
 Open a console window and start your local EWA-docker with `docker-compose up -d`. This will take a while when you start it the first time since docker loads and assembles all images (Next time it will be much faster!).
