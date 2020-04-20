@@ -1,5 +1,5 @@
 # EWA Docker Setup
-You know about Docker and Docker is running on yur system? You do not want to mess up your system by installing a web server and all the fancy software you need for EWA?
+You know about Docker and Docker is running on your system? You do not want to mess up your system by installing a web server and all the fancy software you need for EWA?
 
 In that case you can simply start several docker containers and you are all set for EWA.
 
@@ -14,25 +14,25 @@ When running docker containers you should be aware that this might expose your c
 
 Install the `docker` tools as explained here: https://docs.docker.com/engine/install/
 
-For Linux you need to install docker-compose seperatly: https://docs.docker.com/compose/install/
+For Linux you need to install `docker-compose` seperatly: https://docs.docker.com/compose/install/
 
 ## Initial Setup
 
 In the root folder `EWA_Docker` where the `docker-compose.yml` file is located, create a file called `env.txt` in order to assign a root password for your database as environment variable (copy the content from the file `env_example.txt` for the syntax).
 
 ## Start of the Containers 
-Open a console window and start your local EWA-docker with `docker-compose up -d`. This will take a while when you start it the first time since docker loads and assembles all images (Next time it will be much faster!).
+Open a console window and start your local EWA-docker with `docker-compose up -d`. This will take a while when you start it the first time since docker loads and assembles all images (next time it will be much faster!).
+
 Now you should have 3 containers running:
 - php-apache: Containing Apache Webserver and PHP
 - MariaDB: your database server for SQL
 - PHPmyAdmin: web-based application to modify your database 
 
-All files in `src` are linked into the apache-php container, so you can see your changes while developing in that folder.
-Furthermore this folder contains all examples and demos for the lecture. Everything is set up and deployed automatically.
+All files in `src` are linked into the apache-php container, so you can see your changes while developing in that folder. Furthermore this folder contains all examples and demos for the lecture. Everything is set up and deployed automatically.
 
 ## Test the Installation
 
-Go to [http://localhost](http://localhost) to check the served code. After installation you will see the content of the file `index.php` in the src-folder. 
+Go to [http://localhost](http://localhost) to check the served code. After the installation you will see the content of the file `index.php` from the src-folder. 
 You will get an error if there is no file called `index.php` or `index.html` in your `src` folder (e.g. [http://localhost/Klausuren/19SS/index.php](http://localhost/Klausuren/19SS/index.php))
 
 You can also select a file by specifying a path starting from the src-folder the file at the end of the URL.
@@ -58,7 +58,7 @@ To access `phpmyadmin` go to [http://localhost/phpmyadmin](http://localhost/phpm
 Use the credentials you have set in the `env.txt` file for `root`. The database will be stored persistently (as long as you do not delete the containers). Nevertheless you should better export new database schemes into a sql-file.
 
 ### Major Changes
-If you have changed your `env.txt` or if you want to start from scratch you have to delete and recreate the database volume. Be aware that your data base entries will be lost!
+If you have changed your `env.txt` or if you want to start from scratch you have to delete and recreate the database volume. Be aware that your database entries will be lost!
 To do so stop the running containers `docker-compose down` and delete db volume `docker volume rm ewa_mariadb`. 
 
 ### Misc
