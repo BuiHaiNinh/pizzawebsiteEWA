@@ -1,4 +1,4 @@
-#Bewertung von Praktika
+# Bewertung von Praktika
 1. Issues als Checklisten für die Praktika
    
     Im GitLab-Projekt der Studis sind Vorlagen für die Bewertung der einzelnen Praktikumstermine hinterlegt. Wenn man über die Webseite von GitLab auf das Projekt zugreift, kann man ein *Issue* mit einer Vorlage anlegen: In der Leiste auf der linken Seite *Tickets* anklicken und dann ein neues Ticket eröffnen. In dem erscheinenden Fenster kann man dann ein Template auswählen: z.B: CheckListLab_1.
