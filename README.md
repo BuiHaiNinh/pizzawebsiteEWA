@@ -1,5 +1,5 @@
 # EWA Docker Setup
-You know about Docker and Docker is running on your system? You do not want to mess up your system by installing a web server and all the fancy software you need for EWA?
+You know about [Docker](https://www.docker.com) and Docker is running on your system? You do not want to mess up your system by installing a web server and all the fancy software you need for EWA?
 
 In that case you can simply start several docker containers and you are all set for EWA.
 
@@ -14,11 +14,11 @@ When running docker containers you should be aware that this might expose your c
 
 Install the `docker` tools as explained here: https://docs.docker.com/engine/install/
 
-For Linux you need to install `docker-compose` seperatly: https://docs.docker.com/compose/install/
+For Linux install `docker-compose` separately: https://docs.docker.com/compose/install/
 
 ## Initial Setup
 
-In the root folder `EWA_Docker` where the `docker-compose.yml` file is located, create a file called `env.txt` in order to assign a root password for your database as environment variable (copy the content from the file `env_example.txt` for the syntax).
+In the root folder `EWA_Docker`, where the `docker-compose.yml` file is located, create a file called `env.txt` in order to assign a root password for your database as environment variable (copy the content from the file `env_example.txt` for the syntax).
 
 ## Start of the Containers 
 Open a console window and start your local EWA-docker with `docker-compose up -d`. This will take a while when you start it the first time since docker loads and assembles all images (next time it will be much faster!).
