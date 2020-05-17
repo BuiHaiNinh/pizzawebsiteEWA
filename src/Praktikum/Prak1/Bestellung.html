@@ -39,16 +39,16 @@
     <h2>Warenkorb</h2>
     <form action="https://echo.fbi.h-da.de/" method="post" id="bestellungForm">
         <label>
-            <select name="warenkorb[]" multiple size="5">
+            <select tabindex="0" name="warenkorb[]" multiple size="5">
                 <option>1. Hawait</option>
-                <option>2. Hawait</option>
+                <option selected>2. Hawait</option>
                 <option>2. Salami</option>
             </select>
         </label>
         <p>12.0 €</p>
 
         <label>
-            <input type="text" name="adress" placeholder="Ihre Adresse"/>
+            <input type="text" value="" name="adress" placeholder="Ihre Adresse"/>
         </label>
         <input type="reset" name="deleteAll" value="Alle Löschen"/>
         <input type="button" name="delete" value="Löschen"/>
