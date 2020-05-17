@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="de">  
+<html lang="de">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <!-- für später: CSS include -->
     <!-- <link rel="stylesheet" href="XXX.css"/> -->
     <!-- für später: JavaScript include -->
@@ -10,22 +10,22 @@
 </head>
 
 <body>
-    <section id="bestellte_Pizzen">
-        <h2>Bäcker Seite</h2>
-        <form action="https://echo.fbi.h-da.de/" id="Bäcker_status_form" method="post" accept-charset="UTF-8">
-            <p>Bestellung ID</p>
-            <p>Die Status aller Pizzen in dieser Bestellung: </p>
-            <input type="radio" id="ferig" name="Bäcker_status" value="ferig">
-            <label for="ferig">Ferig</label><br>
-            <input type="radio" id="im_Ofen" name="Bäcker_status" value="im_Ofen">
-            <label for="im_Ofen">Im Ofen</label><br>
-            <input type="radio" id="bestellt" name="Bäcker_status" value="bestellt">
-            <label for="bestellt">Bestellt</label>
-            <br>
+<section id="bestellte_Pizzen">
+    <h2>Bäcker Seite</h2>
+    <form action="https://echo.fbi.h-da.de/" id="Bäcker_status_form" method="post" accept-charset="UTF-8">
+        <p>Bestellung ID</p>
+        <p>Die Status aller Pizzen in dieser Bestellung: </p>
+        <input type="radio" id="ferig" name="Bäcker_status" value="ferig">
+        <label for="ferig">Ferig</label><br>
+        <input type="radio" id="im_Ofen" name="Bäcker_status" value="im_Ofen">
+        <label for="im_Ofen">Im Ofen</label><br>
+        <input type="radio" id="bestellt" name="Bäcker_status" value="bestellt" checked>
+        <label for="bestellt">Bestellt</label>
+        <br>
 
-            <input type="submit" value="Submit">
-        </form>
-    </section>
+        <input type="submit" value="Submit">
+    </form>
+</section>
 </body>
 
 </html>
