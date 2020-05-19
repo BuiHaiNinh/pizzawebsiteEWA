@@ -19,8 +19,6 @@ class Baecker extends Page
     {
         parent::processReceivedData();
 
-
-
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
             return;
         }
@@ -42,8 +40,6 @@ class Baecker extends Page
         SET status = ?
         WHERE id = ?
         SQL;
-
-        echo 'header';
 
         $stmt = $this->_database->prepare($query);
         $stmt->bind_param('si', $status, $id);
