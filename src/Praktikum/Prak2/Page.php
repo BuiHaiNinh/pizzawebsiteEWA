@@ -90,6 +90,7 @@ abstract class Page
         <!DOCTYPE html>
         <html lang="de">
         <head>
+            <meta charset="UTF-8">
             <title>{$headline}</title>
         </head>
         <body>

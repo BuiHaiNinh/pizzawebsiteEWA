@@ -32,6 +32,7 @@ class BlockTemplate        // to do: change name of class
     /**
      * Reference to the MySQLi-Database that is
      * accessed by all operations of the class.
+     * @var MySQLi
      */
     protected $_database = null;
     
