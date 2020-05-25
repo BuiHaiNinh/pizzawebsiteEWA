@@ -62,6 +62,7 @@ class Fahrer extends Page {
         $this->generatePageHeader('Fahrer');
 
         echo <<<EOT
+        <meta http-equiv="refresh" content="5" > 
         <header>
             <h1>Fahrer</h1>
         </header>

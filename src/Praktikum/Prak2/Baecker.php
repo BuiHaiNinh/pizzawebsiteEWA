@@ -68,8 +68,9 @@ class Baecker extends Page
         $this->generatePageHeader('Bäcker');
 
         echo <<<EOT
+        <meta http-equiv="refresh" content="5" > 
         <header>
-            <h1>Bestellung</h1>
+            <h1>Bäcker</h1>
         </header>
         EOT;
 
