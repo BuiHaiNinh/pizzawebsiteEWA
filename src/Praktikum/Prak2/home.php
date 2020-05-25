@@ -10,7 +10,7 @@ echo <<<EOF
 <body>
 
 <a href="Bestellung.php">Bestellung</a>
-<a href="Baeker.php">Bäker</a>
+<a href="Baecker.php">Bäker</a>
 <a href="Fahrer.php">Fahrer</a>
 <a href="Kunde.php">Kunde</a>
 
