@@ -1,7 +1,7 @@
 <?php // UTF-8 marker äöüÄÖÜß€
 require_once "./Page.php";
 
-class Fahrer extends Page {
+class Kunde extends Page {
 
     protected function __constructor() {
         parent::__constructor();
@@ -40,13 +40,12 @@ class Fahrer extends Page {
         $stmt->bind_param('si', $status, $id);
         $stmt->execute();
 
-        header('Location: http://localhost/Praktikum/Prak2/Fahrer.php');
+        header('Location: http://localhost/Praktikum/Prak2/Kunde.php');
     }
 
     protected function getViewData() {
         $orderedArticles = array();
-        //$sql = "SELECT ordered_articles.id, ordered_articles.f_article_id, ordered_articles.f_order_id, ordered_articles.status, article.name, ordering.address FROM ordered_articles, ordering LEFT JOIN article ON ordered_articles.f_article_id = article.id LEFT JOIN ordered_articles ON ordered_articles.f_order_id = ordering.id";
-        $sql = "SELECT ordered_articles.id, f_article_id, f_order_id, status, address FROM ordered_articles LEFT JOIN ordering ON f_order_id = ordering.id";
+        $sql = "SELECT ordered_articles.id, f_article_id, f_order_id, status, name FROM ordered_articles LEFT JOIN article ON f_article_id = article.id";
         $result = $this->_database->query($sql);
         if(!$result)
             throw new Exception("Fehler in Abfrage: " . $this->_database->error);
@@ -63,79 +62,55 @@ class Fahrer extends Page {
 
         echo <<<EOT
         <header>
-            <h1>Fahrer</h1>
+            <h1>Kunde (Lieferstatus)</h1>
         </header>
         EOT;
 
         foreach ($orderedArticles as $orderedArticle) {
             $status = intval($orderedArticle['status']);
-            if ($status < 3)
-                continue;
+            switch ($status){
+                case 0:
+                    echo <<<EOT
+                        <p>Bestellung {$orderedArticle["id"]}: Pizza {$orderedArticle["name"]}</p>
+                        <p>Status: bestellt</p>
+                    EOT;
+                    break;
 
-            echo "<form action=\"Fahrer.php\" method=\"post\">";
-            echo "<input type='hidden' name='id' value={$orderedArticle['id']} />";
-
-            switch ($orderedArticle["f_article_id"]) {
                 case 1:
                     echo <<<EOT
-                        <section>
-                        <h3>Bestellung {$orderedArticle["id"]}: Pizza Salami - Address: {$orderedArticle["address"]}</h3>
-                        <p>Status:</p>
+                        <p>Bestellung {$orderedArticle["id"]}: Pizza {$orderedArticle["name"]}</p>
+                        <p>Status: Im Ofen</p>
                     EOT;
                     break;
 
                 case 2:
                     echo <<<EOT
-                        <section>
-                        <h3>Bestellung {$orderedArticle["id"]}: Pizza Vegetaria - Address: {$orderedArticle["address"]}</h3>
-                        <p>Status:</p>
+                        <p>Bestellung {$orderedArticle["id"]}: Pizza {$orderedArticle["name"]}</p>
+                        <p>Status: fertig</p>
                     EOT;
                     break;
 
                 case 3:
                     echo <<<EOT
-                        <section>
-                        <h3>Bestellung {$orderedArticle["id"]}: Pizza Spinat-Hünchen - Address: {$orderedArticle["address"]}</h3>
-                        <p>Status:</p>
+                        <p>Bestellung {$orderedArticle["id"]}: Pizza {$orderedArticle["name"]}</p>
+                        <p>Status: Fertig (Auf Fahrer-seite)</p>
+                    EOT;
+                    break;
+
+                case 4:
+                    echo <<<EOT
+                        <p>Bestellung {$orderedArticle["id"]}: Pizza {$orderedArticle["name"]}</p>
+                        <p>Status: Unterwegs</p>
+                    EOT;
+                    break;
+
+                case 5:
+                    echo <<<EOT
+                        <p>Bestellung {$orderedArticle["id"]}: Pizza {$orderedArticle["name"]}</p>
+                        <p>Status: Geliefert</p>
                     EOT;
                     break;
             }
-
-            $isChecked = $status == 3 ? 'checked' : null;
-
-            echo <<<EOT
-            
-            <label>
-                <input type="radio" name="status" value=3 {$isChecked} /> 
-                Fertig
-            </label>
-            EOT;
-
-            $isChecked = $status == 4 ? 'checked' : null;
-
-            echo <<<EOT
-            <label>
-                <input type="radio" name="status" value=4 {$isChecked} /> 
-                Unterwegs
-            </label>
-            EOT;
-
-            $isChecked = $status == 5 ? 'checked' : null;
-
-            echo <<<EOT
-            <label>
-                <input type="radio" name="status" value=5 {$isChecked} /> 
-                Geliefert
-            </label> 
-            EOT;
-
-            echo <<<EOT
-            </section>
-            EOT;
-
-            echo "<br>";
-            echo "<input type=\"submit\" value=\"Ändern\"/>";
-            echo "</form>";
         }
 
 
@@ -145,7 +120,7 @@ class Fahrer extends Page {
     public static function main()
     {
         try {
-            $page = new Fahrer();
+            $page = new Kunde();
             $page->processReceivedData();
             $page->generateView();
         } catch (Exception $e) {
@@ -155,7 +130,7 @@ class Fahrer extends Page {
     }
 }
 
-Fahrer::main();
+Kunde::main();
 
 
 
