@@ -1,3 +1,6 @@
+<?php
+echo <<< EOF
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -37,7 +40,7 @@
 
 <section>
     <h2>Warenkorb</h2>
-    <form action="https://echo.fbi.h-da.de/" method="post" id="bestellungForm" accept-charset="UTF-8">
+    <form action="https://echo.fbi.h-da.de/" method="post" id="bestellungForm">
         <label>
             <select tabindex="0" name="warenkorb[]" multiple size="5">
                 <option>1. Hawait</option>
@@ -59,3 +62,5 @@
 
 </body>
 </html>
+
+EOF;

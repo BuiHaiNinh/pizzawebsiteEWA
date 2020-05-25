@@ -1,3 +1,5 @@
+<?php
+echo <<<EOF
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -39,3 +41,4 @@
 
 </body>
 </html>
+EOF;
