@@ -36,7 +36,7 @@ class Bestellung extends Page
             return;
         }
 
-        var_dump($address);
+        //var_dump($address);
 
         $this->_database->autocommit(false);
         // Begin transaction
@@ -84,7 +84,7 @@ class Bestellung extends Page
     protected function generateView()
     {
         $articles = $this->getViewData();
-        $this->generatePageHeader('to do: change headline');
+        $this->generatePageHeader('Bestellung');
 
         (new SpeisekarteBlock($this->_database))->generateView('speisekarte');
 

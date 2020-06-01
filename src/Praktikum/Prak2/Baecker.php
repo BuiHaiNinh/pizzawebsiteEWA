@@ -66,9 +66,9 @@ class Baecker extends Page
     {
         $orderedArticles = $this->getViewData();
         $this->generatePageHeader('Bäcker');
+        header("Refresh: 5; url=http://localhost/Praktikum/Prak2/Baecker.php");
 
         echo <<<EOT
-        <meta http-equiv="refresh" content="5" > 
         <header>
             <h1>Bäcker</h1>
         </header>

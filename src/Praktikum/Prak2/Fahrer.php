@@ -60,6 +60,7 @@ class Fahrer extends Page {
     protected function generateView() {
         $orderedArticles = $this->getViewData();
         $this->generatePageHeader('Fahrer');
+        header("Refresh: 5; url=http://localhost/Praktikum/Prak2/Fahrer.php");
 
         echo <<<EOT
         <meta http-equiv="refresh" content="5" > 
