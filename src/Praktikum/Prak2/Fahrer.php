@@ -1,17 +1,21 @@
 <?php // UTF-8 marker äöüÄÖÜß€
 require_once "./Page.php";
 
-class Fahrer extends Page {
+class Fahrer extends Page
+{
 
-    protected function __constructor() {
+    protected function __constructor()
+    {
         parent::__construct();
     }
 
-    public function __destructor() {
+    public function __destructor()
+    {
         parent::__destruct();
     }
 
-    protected function processReceivedData() {
+    protected function processReceivedData()
+    {
         parent::processReceivedData();
 
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
@@ -43,11 +47,12 @@ class Fahrer extends Page {
         header('Location: http://localhost/Praktikum/Prak2/Fahrer.php');
     }
 
-    protected function getViewData() {
+    protected function getViewData()
+    {
         $orderedArticles = array();
         $sql = "SELECT oa.id, oa.f_article_id, oa.f_order_id, oa.status, od.address, a.name FROM ordered_articles oa LEFT JOIN ordering od ON oa.f_order_id = od.id LEFT JOIN article a ON oa.f_article_id = a.id";
         $result = $this->_database->query($sql);
-        if(!$result)
+        if (!$result)
             throw new Exception("Fehler in Abfrage: " . $this->_database->error);
         while ($row = $result->fetch_assoc()) {
             $orderedArticles[] = $row;
@@ -56,7 +61,8 @@ class Fahrer extends Page {
         return $orderedArticles;
     }
 
-    protected function generateView() {
+    protected function generateView()
+    {
         $orderedArticles = $this->getViewData();
         $this->generatePageHeader('Fahrer');
         header("Refresh: 5; url=http://localhost/Praktikum/Prak2/Fahrer.php");
