@@ -82,7 +82,7 @@ class Fahrer extends Page
 
         foreach ($orderedArticles as $orderedArticle) {
             $status = intval($orderedArticle['status']);
-            if ($status < 2)
+            if ($status < 2 || $status >= 4)
                 continue;
 
             echo "<form action=\"Fahrer.php\" method=\"post\">";
