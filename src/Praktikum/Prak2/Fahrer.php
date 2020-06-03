@@ -50,7 +50,13 @@ class Fahrer extends Page
     protected function getViewData()
     {
         $orderedArticles = array();
-        $sql = "SELECT oa.id, oa.f_article_id, oa.f_order_id, oa.status, od.address, a.name FROM ordered_articles oa LEFT JOIN ordering od ON oa.f_order_id = od.id LEFT JOIN article a ON oa.f_article_id = a.id";
+        $sql = <<<SQL
+        SELECT oa.id, oa.f_article_id, oa.f_order_id, oa.status, od.address, a.name 
+        FROM ordered_articles oa 
+            LEFT JOIN ordering od ON oa.f_order_id = od.id 
+            LEFT JOIN article a ON oa.f_article_id = a.id
+        SQL;
+
         $result = $this->_database->query($sql);
         if (!$result)
             throw new Exception("Fehler in Abfrage: " . $this->_database->error);
