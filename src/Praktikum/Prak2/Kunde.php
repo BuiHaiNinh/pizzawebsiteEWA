@@ -1,17 +1,21 @@
 <?php // UTF-8 marker äöüÄÖÜß€
 require_once "./Page.php";
 
-class Kunde extends Page {
+class Kunde extends Page
+{
 
-    protected function __constructor() {
-        parent::__constructor();
+    protected function __construct()
+    {
+        parent::__construct();
     }
 
-    public function __destructor() {
-        parent::__destructor();
+    public function __destruct()
+    {
+        parent::__destruct();
     }
 
-    protected function processReceivedData() {
+    protected function processReceivedData()
+    {
         parent::processReceivedData();
 
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
@@ -43,11 +47,12 @@ class Kunde extends Page {
         header('Location: http://localhost/Praktikum/Prak2/Kunde.php');
     }
 
-    protected function getViewData() {
+    protected function getViewData()
+    {
         $orderedArticles = array();
         $sql = "SELECT ordered_articles.id, f_article_id, f_order_id, status, name FROM ordered_articles LEFT JOIN article ON f_article_id = article.id";
         $result = $this->_database->query($sql);
-        if(!$result)
+        if (!$result)
             throw new Exception("Fehler in Abfrage: " . $this->_database->error);
         while ($row = $result->fetch_assoc()) {
             $orderedArticles[] = $row;
@@ -56,7 +61,8 @@ class Kunde extends Page {
         return $orderedArticles;
     }
 
-    protected function generateView() {
+    protected function generateView()
+    {
         $orderedArticles = $this->getViewData();
         $this->generatePageHeader('Kunde');
         header("Refresh: 5; url=http://localhost/Praktikum/Prak2/Kunde.php");
@@ -69,7 +75,7 @@ class Kunde extends Page {
 
         foreach ($orderedArticles as $orderedArticle) {
             $status = intval($orderedArticle['status']);
-            switch ($status){
+            switch ($status) {
                 case 0:
                     echo <<<EOT
                         <p>Bestellung {$orderedArticle["id"]}: Pizza {$orderedArticle["name"]}</p>
