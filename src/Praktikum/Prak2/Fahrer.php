@@ -108,7 +108,7 @@ class Fahrer extends Page {
             echo <<<EOT
             
             <label>
-                <input type="radio" name="status" value=3 {$isChecked} /> 
+                <input type="radio" name="status" value=2 {$isChecked} /> 
                 Fertig
             </label>
             EOT;
@@ -117,7 +117,7 @@ class Fahrer extends Page {
 
             echo <<<EOT
             <label>
-                <input type="radio" name="status" value=4 {$isChecked} /> 
+                <input type="radio" name="status" value=3 {$isChecked} /> 
                 Unterwegs
             </label>
             EOT;
@@ -126,7 +126,7 @@ class Fahrer extends Page {
 
             echo <<<EOT
             <label>
-                <input type="radio" name="status" value=5 {$isChecked} /> 
+                <input type="radio" name="status" value=4 {$isChecked} /> 
                 Geliefert
             </label> 
             EOT;
