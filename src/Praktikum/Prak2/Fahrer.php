@@ -71,7 +71,7 @@ class Fahrer extends Page {
 
         foreach ($orderedArticles as $orderedArticle) {
             $status = intval($orderedArticle['status']);
-            if ($status < 3)
+            if ($status < 2)
                 continue;
 
             echo "<form action=\"Fahrer.php\" method=\"post\">";
@@ -103,7 +103,7 @@ class Fahrer extends Page {
                     break;
             }
 
-            $isChecked = $status == 3 ? 'checked' : null;
+            $isChecked = $status == 2 ? 'checked' : null;
 
             echo <<<EOT
             
@@ -113,7 +113,7 @@ class Fahrer extends Page {
             </label>
             EOT;
 
-            $isChecked = $status == 4 ? 'checked' : null;
+            $isChecked = $status == 3 ? 'checked' : null;
 
             echo <<<EOT
             <label>
@@ -122,7 +122,7 @@ class Fahrer extends Page {
             </label>
             EOT;
 
-            $isChecked = $status == 5 ? 'checked' : null;
+            $isChecked = $status == 4 ? 'checked' : null;
 
             echo <<<EOT
             <label>

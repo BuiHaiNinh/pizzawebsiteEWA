@@ -76,7 +76,7 @@ class Baecker extends Page
 
         foreach ($orderedArticles as $orderedArticle) {
             $status = intval($orderedArticle['status']);
-            if ($status >= 3)
+            if ($status >= 2)
                 continue;
 
             echo "<form action=\"Baecker.php\" method=\"post\">";

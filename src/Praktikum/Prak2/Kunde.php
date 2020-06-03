@@ -132,6 +132,3 @@ class Kunde extends Page {
 
 Kunde::main();
 
-
-
-//$sql = "SELECT ordered_articles.id, ordered_articles.f_article_id, ordered_articles.f_order_id, ordered_articles.status, article.name, ordering.address FROM ordered_articles, ordering LEFT JOIN article ON ordered_articles.f_article_id = article.id LEFT JOIN ordered_articles ON ordered_articles.f_order_id = ordering.id";
