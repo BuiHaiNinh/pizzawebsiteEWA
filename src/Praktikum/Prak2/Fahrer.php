@@ -4,11 +4,11 @@ require_once "./Page.php";
 class Fahrer extends Page {
 
     protected function __constructor() {
-        parent::__constructor();
+        parent::__construct();
     }
 
     public function __destructor() {
-        parent::__destructor();
+        parent::__destruct();
     }
 
     protected function processReceivedData() {
@@ -45,8 +45,7 @@ class Fahrer extends Page {
 
     protected function getViewData() {
         $orderedArticles = array();
-        //$sql = "SELECT ordered_articles.id, ordered_articles.f_article_id, ordered_articles.f_order_id, ordered_articles.status, article.name, ordering.address FROM ordered_articles, ordering LEFT JOIN article ON ordered_articles.f_article_id = article.id LEFT JOIN ordered_articles ON ordered_articles.f_order_id = ordering.id";
-        $sql = "SELECT ordered_articles.id, f_article_id, f_order_id, status, address FROM ordered_articles LEFT JOIN ordering ON f_order_id = ordering.id";
+        $sql = "SELECT oa.id, oa.f_article_id, oa.f_order_id, oa.status, od.address, a.name FROM ordered_articles oa LEFT JOIN ordering od ON oa.f_order_id = od.id LEFT JOIN article a ON oa.f_article_id = a.id";
         $result = $this->_database->query($sql);
         if(!$result)
             throw new Exception("Fehler in Abfrage: " . $this->_database->error);
@@ -77,56 +76,32 @@ class Fahrer extends Page {
             echo "<form action=\"Fahrer.php\" method=\"post\">";
             echo "<input type='hidden' name='id' value={$orderedArticle['id']} />";
 
-            switch ($orderedArticle["f_article_id"]) {
-                case 1:
-                    echo <<<EOT
-                        <section>
-                        <h3>Bestellung {$orderedArticle["id"]}: Pizza Salami - Address: {$orderedArticle["address"]}</h3>
-                        <p>Status:</p>
-                    EOT;
-                    break;
-
-                case 2:
-                    echo <<<EOT
-                        <section>
-                        <h3>Bestellung {$orderedArticle["id"]}: Pizza Vegetaria - Address: {$orderedArticle["address"]}</h3>
-                        <p>Status:</p>
-                    EOT;
-                    break;
-
-                case 3:
-                    echo <<<EOT
-                        <section>
-                        <h3>Bestellung {$orderedArticle["id"]}: Pizza Spinat-Hünchen - Address: {$orderedArticle["address"]}</h3>
-                        <p>Status:</p>
-                    EOT;
-                    break;
-            }
+            echo <<<EOT
+                <section>
+                <h3>Bestellung {$orderedArticle["id"]}: Pizza {$orderedArticle["name"]} - Address: {$orderedArticle["address"]}</h3>
+                <p>Status:</p>
+            EOT;
 
             $isChecked = $status == 2 ? 'checked' : null;
-
             echo <<<EOT
-            
             <label>
-                <input type="radio" name="status" value=3 {$isChecked} /> 
-                Fertig
+                <input type="radio" name="status" value=2 {$isChecked} /> 
+                Gebackt fertig. Warte zum liefern
             </label>
             EOT;
 
             $isChecked = $status == 3 ? 'checked' : null;
-
             echo <<<EOT
             <label>
-                <input type="radio" name="status" value=4 {$isChecked} /> 
+                <input type="radio" name="status" value=3 {$isChecked} /> 
                 Unterwegs
             </label>
             EOT;
 
             $isChecked = $status == 4 ? 'checked' : null;
-
             echo <<<EOT
             <label>
-                <input type="radio" name="status" value=5 {$isChecked} /> 
+                <input type="radio" name="status" value=4 {$isChecked} /> 
                 Geliefert
             </label> 
             EOT;

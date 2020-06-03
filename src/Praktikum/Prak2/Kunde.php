@@ -58,7 +58,8 @@ class Kunde extends Page {
 
     protected function generateView() {
         $orderedArticles = $this->getViewData();
-        $this->generatePageHeader('Fahrer');
+        $this->generatePageHeader('Kunde');
+        header("Refresh: 5; url=http://localhost/Praktikum/Prak2/Kunde.php");
 
         echo <<<EOT
         <header>
@@ -72,7 +73,7 @@ class Kunde extends Page {
                 case 0:
                     echo <<<EOT
                         <p>Bestellung {$orderedArticle["id"]}: Pizza {$orderedArticle["name"]}</p>
-                        <p>Status: bestellt</p>
+                        <p>Status: Bestellt</p>
                     EOT;
                     break;
 
@@ -86,14 +87,14 @@ class Kunde extends Page {
                 case 2:
                     echo <<<EOT
                         <p>Bestellung {$orderedArticle["id"]}: Pizza {$orderedArticle["name"]}</p>
-                        <p>Status: fertig</p>
+                        <p>Status: Gebackt fertig </p>
                     EOT;
                     break;
 
                 case 3:
                     echo <<<EOT
                         <p>Bestellung {$orderedArticle["id"]}: Pizza {$orderedArticle["name"]}</p>
-                        <p>Status: Fertig (Auf Fahrer-seite)</p>
+                        <p>Status: Gebackt fertig. Warte zum liefern</p>
                     EOT;
                     break;
 
