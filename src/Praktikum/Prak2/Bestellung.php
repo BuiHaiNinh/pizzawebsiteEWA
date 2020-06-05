@@ -5,7 +5,6 @@ require_once './SpeisekarteBlock.php';
 
 class Bestellung extends Page
 {
-
     protected function __construct()
     {
         parent::__construct();
@@ -26,6 +25,9 @@ class Bestellung extends Page
         // Check variables
         if (isset($_POST['warenkorb']) && is_array($_POST['warenkorb'])) {
             $warenkorb = $_POST['warenkorb'];
+            if (count($warenkorb) == 0) {
+                return;
+            }
         } else {
             return;
         }
@@ -64,6 +66,8 @@ class Bestellung extends Page
         }
 
         $this->_database->commit();
+
+        $_SESSION['order_id'] = $orderID;
         header('Location: http://localhost/Praktikum/Prak2/Bestellung.php');
     }
 
