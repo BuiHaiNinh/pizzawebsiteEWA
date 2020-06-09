@@ -125,26 +125,7 @@ abstract class Page
      */
     protected function processReceivedData()
     {
-        session_start();
 
-        if ($this->checkSessionLastAccess()) {
-            // Update session timeout.
-            $_SESSION['LastAccess'] = time();
-        } else {
-            // Destroy session.
-            session_unset();
-            session_destroy();
-
-            session_start();
-            $_SESSION['LastAccess'] = time();
-        }
-    }
-
-    protected $sessionTimeoutSec = 600;
-
-    private function checkSessionLastAccess()
-    {
-        return isset($_SESSION['LastAccess']) && time() - $_SESSION['LastAccess'] < $this->sessionTimeoutSec;
     }
 } // end of class
 

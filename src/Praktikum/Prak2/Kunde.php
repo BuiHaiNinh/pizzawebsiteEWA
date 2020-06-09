@@ -49,37 +49,23 @@ class Kunde extends Page
 
     protected function getViewData()
     {
-        if (isset($_SESSION['order_id'])) {
-            $orderID = $_SESSION['order_id'];
-
-            $orderedArticles = array();
-
-            $sql = <<<SQL
-            SELECT ordered_articles.id, f_article_id, f_order_id, status, name 
-            FROM ordered_articles 
-                LEFT JOIN article ON f_article_id = article.id
-            WHERE f_order_id = ?
-            SQL;
-
-            $stm = $this->_database->prepare($sql);
-            $stm->bind_param('i', $orderID);
-            $stm->execute();
-            $result = $stm->get_result();
-            if (!$result)
-                throw new Exception("Fehler in Abfrage: " . $this->_database->error);
-            while ($row = $result->fetch_assoc()) {
-                $orderedArticles[] = $row;
-            }
-            $result->free();
-            return $orderedArticles;
+        $orderedArticles = array();
+        $sql = "SELECT ordered_articles.id, f_article_id, f_order_id, status, name FROM ordered_articles LEFT JOIN article ON f_article_id = article.id";
+        $result = $this->_database->query($sql);
+        if (!$result)
+            throw new Exception("Fehler in Abfrage: " . $this->_database->error);
+        while ($row = $result->fetch_assoc()) {
+            $orderedArticles[] = $row;
         }
-        return [];
+        $result->free();
+        return $orderedArticles;
     }
 
     protected function generateView()
     {
         $orderedArticles = $this->getViewData();
         $this->generatePageHeader('Kunde');
+        header("Refresh: 5; url=http://localhost/Praktikum/Prak2/Kunde.php");
 
         echo <<<EOT
         <header>
