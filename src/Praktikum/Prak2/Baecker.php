@@ -74,6 +74,11 @@ class Baecker extends Page
         </header>
         EOT;
 
+        if (sizeof($orderedArticles) == 0) {
+            echo "<p>Es gibt in diesem Moment keine Bestellungen</p>>";
+            return;
+        }
+
         foreach ($orderedArticles as $orderedArticle) {
             $status = intval($orderedArticle['status']);
             if ($status >= 3)
