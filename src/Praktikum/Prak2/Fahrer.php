@@ -22,8 +22,8 @@ class Fahrer extends Page
             return;
         }
 
-        if (isset($_POST['id']) && is_numeric($_POST['id'])) {
-            $id = $_POST['id'];
+        if (isset($_POST['f_order_id']) && is_numeric($_POST['f_order_id'])) {
+            $f_order_id = $_POST['f_order_id'];
         } else {
             return;
         }
@@ -37,11 +37,11 @@ class Fahrer extends Page
         $query = <<<SQL
         UPDATE ordered_articles
         SET status = ?
-        WHERE id = ?
+        WHERE f_order_id = ?
         SQL;
 
         $stmt = $this->_database->prepare($query);
-        $stmt->bind_param('si', $status, $id);
+        $stmt->bind_param('si', $status, $f_order_id);
         $stmt->execute();
 
         header('Location: http://localhost/Praktikum/Prak2/Fahrer.php');
@@ -86,6 +86,11 @@ class Fahrer extends Page
         </header>
         EOT;
 
+        if (sizeof($bestellungen) == 0) {
+            echo "<p>Es gibt in diesem Moment keine Bestellungen !!!</p>>";
+            return;
+        }
+
         foreach ($bestellungen as $orderedArticles) {
 
             $bestellungen = array_filter($orderedArticles, function ($value) {
@@ -93,59 +98,63 @@ class Fahrer extends Page
                 return ($status >= 2 && $status <= 3);
             });
 
-            if (sizeof($bestellungen) == 0)
+            if (sizeof($bestellungen) == 0) {
                 continue;
+            }
 
             $price = array_reduce($bestellungen, function ($value, $i) {
                 $value += $i['price'];
                 return $value;
             }, 0);
 
-            echo "<h3>Bestellung {$orderedArticles[0]["f_order_id"]}: {$orderedArticles[0]['address']}. Summe: {$price}</h3>";
+            echo "<h3>Bestellung {$orderedArticles[0]["f_order_id"]}: {$orderedArticles[0]['address']}. Summe: {$price} EURO</h3>";
+
+            $status = intval($orderedArticles[0]['status']);
+
+            echo "<form action=\"Fahrer.php\" method=\"post\">";
+            echo "<input type='hidden' name='f_order_id' value={$orderedArticles[0]["f_order_id"]} />";
+
             foreach ($orderedArticles as $orderedArticle) {
-                $status = intval($orderedArticle['status']);
-
-                echo "<form action=\"Fahrer.php\" method=\"post\">";
-                echo "<input type='hidden' name='id' value={$orderedArticle['id']} />";
-
                 echo <<<EOT
                 <section>
                 <h5>Pizza Nr.{$orderedArticle["id"]}: Pizza {$orderedArticle["name"]}</h5>
-                <p>Status:</p>
+                <!--<p>Status:</p>-->
             EOT;
+            }
 
-                $isChecked = $status == 2 ? 'checked' : null;
-                echo <<<EOT
+            echo "<p>Status:</p>";
+
+            $isChecked = $status == 2 ? 'checked' : null;
+            echo <<<EOT
             <label>
                 <input type="radio" name="status" value=2 {$isChecked} /> 
                 Gebackt fertig. Warte zum liefern
             </label>
             EOT;
 
-                $isChecked = $status == 3 ? 'checked' : null;
-                echo <<<EOT
+            $isChecked = $status == 3 ? 'checked' : null;
+            echo <<<EOT
             <label>
                 <input type="radio" name="status" value=3 {$isChecked} /> 
                 Unterwegs
             </label>
             EOT;
 
-                $isChecked = $status == 4 ? 'checked' : null;
-                echo <<<EOT
+            $isChecked = $status == 4 ? 'checked' : null;
+            echo <<<EOT
             <label>
                 <input type="radio" name="status" value=4 {$isChecked} /> 
                 Geliefert
             </label> 
             EOT;
 
-                echo <<<EOT
+            echo <<<EOT
             </section>
             EOT;
 
-                echo "<br>";
-                echo "<input type=\"submit\" value=\"Ändern\"/>";
-                echo "</form>";
-            }
+            echo "<br>";
+            echo "<input type=\"submit\" value=\"Ändern\"/>";
+            echo "</form>";
         }
 
         $this->generatePageFooter();
