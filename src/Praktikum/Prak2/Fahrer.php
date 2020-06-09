@@ -51,7 +51,7 @@ class Fahrer extends Page
     {
         $orderedArticles = array();
         $sql = <<<SQL
-        SELECT oa.id, oa.f_article_id, oa.f_order_id, oa.status, od.address, a.name 
+        SELECT oa.id, oa.f_article_id, oa.f_order_id, oa.status, od.address, a.name, a.price
         FROM ordered_articles oa 
             LEFT JOIN ordering od ON oa.f_order_id = od.id 
             LEFT JOIN article a ON oa.f_article_id = a.id
@@ -64,12 +64,18 @@ class Fahrer extends Page
             $orderedArticles[] = $row;
         }
         $result->free();
-        return $orderedArticles;
+
+        $bestellungen = array();
+        foreach ($orderedArticles as $row) {
+            $bestellungen[$row["f_order_id"]][] = $row;
+        }
+
+        return $bestellungen;
     }
 
     protected function generateView()
     {
-        $orderedArticles = $this->getViewData();
+        $bestellungen = $this->getViewData();
         $this->generatePageHeader('Fahrer');
         header("Refresh: 5; url=http://localhost/Praktikum/Prak2/Fahrer.php");
 
@@ -80,53 +86,67 @@ class Fahrer extends Page
         </header>
         EOT;
 
-        foreach ($orderedArticles as $orderedArticle) {
-            $status = intval($orderedArticle['status']);
-            if ($status < 2 || $status >= 4)
+        foreach ($bestellungen as $orderedArticles) {
+
+            $bestellungen = array_filter($orderedArticles, function ($value) {
+                $status = $value['status'];
+                return ($status >= 2 && $status <= 3);
+            });
+
+            if (sizeof($bestellungen) == 0)
                 continue;
 
-            echo "<form action=\"Fahrer.php\" method=\"post\">";
-            echo "<input type='hidden' name='id' value={$orderedArticle['id']} />";
+            $price = array_reduce($bestellungen, function ($value, $i) {
+                $value += $i['price'];
+                return $value;
+            }, 0);
 
-            echo <<<EOT
+            echo "<h3>Bestellung {$orderedArticles[0]["f_order_id"]}: {$orderedArticles[0]['address']}. Summe: {$price}</h3>";
+            foreach ($orderedArticles as $orderedArticle) {
+                $status = intval($orderedArticle['status']);
+
+                echo "<form action=\"Fahrer.php\" method=\"post\">";
+                echo "<input type='hidden' name='id' value={$orderedArticle['id']} />";
+
+                echo <<<EOT
                 <section>
-                <h3>Bestellung {$orderedArticle["id"]}: Pizza {$orderedArticle["name"]} - Address: {$orderedArticle["address"]}</h3>
+                <h5>Pizza Nr.{$orderedArticle["id"]}: Pizza {$orderedArticle["name"]}</h5>
                 <p>Status:</p>
             EOT;
 
-            $isChecked = $status == 2 ? 'checked' : null;
-            echo <<<EOT
+                $isChecked = $status == 2 ? 'checked' : null;
+                echo <<<EOT
             <label>
                 <input type="radio" name="status" value=2 {$isChecked} /> 
                 Gebackt fertig. Warte zum liefern
             </label>
             EOT;
 
-            $isChecked = $status == 3 ? 'checked' : null;
-            echo <<<EOT
+                $isChecked = $status == 3 ? 'checked' : null;
+                echo <<<EOT
             <label>
                 <input type="radio" name="status" value=3 {$isChecked} /> 
                 Unterwegs
             </label>
             EOT;
 
-            $isChecked = $status == 4 ? 'checked' : null;
-            echo <<<EOT
+                $isChecked = $status == 4 ? 'checked' : null;
+                echo <<<EOT
             <label>
                 <input type="radio" name="status" value=4 {$isChecked} /> 
                 Geliefert
             </label> 
             EOT;
 
-            echo <<<EOT
+                echo <<<EOT
             </section>
             EOT;
 
-            echo "<br>";
-            echo "<input type=\"submit\" value=\"Ändern\"/>";
-            echo "</form>";
+                echo "<br>";
+                echo "<input type=\"submit\" value=\"Ändern\"/>";
+                echo "</form>";
+            }
         }
-
 
         $this->generatePageFooter();
     }
