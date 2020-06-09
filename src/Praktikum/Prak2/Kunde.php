@@ -17,6 +17,34 @@ class Kunde extends Page
     protected function processReceivedData()
     {
         parent::processReceivedData();
+
+        if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+            return;
+        }
+
+        if (isset($_POST['id']) && is_numeric($_POST['id'])) {
+            $id = $_POST['id'];
+        } else {
+            return;
+        }
+
+        if (isset($_POST['status']) && is_numeric($_POST['status'])) {
+            $status = $_POST['status'];
+        } else {
+            return;
+        }
+
+        $query = <<<SQL
+        UPDATE ordered_articles
+        SET status = ?
+        WHERE id = ?
+        SQL;
+
+        $stmt = $this->_database->prepare($query);
+        $stmt->bind_param('si', $status, $id);
+        $stmt->execute();
+
+        header('Location: http://localhost/Praktikum/Prak2/Kunde.php');
     }
 
     protected function getViewData()
