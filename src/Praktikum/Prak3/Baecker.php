@@ -45,7 +45,7 @@ class Baecker extends Page
         $stmt->bind_param('si', $status, $id);
         $stmt->execute();
 
-        header('Location: http://localhost/Praktikum/Prak2/Baecker.php');
+        header('Location: http://localhost/Praktikum/Prak3/Baecker.php');
     }
 
     protected function getViewData()
@@ -66,7 +66,7 @@ class Baecker extends Page
     {
         $orderedArticles = $this->getViewData();
         $this->generatePageHeader('Bäcker');
-        header("Refresh: 5; url=http://localhost/Praktikum/Prak2/Baecker.php");
+        header("Refresh: 5; url=http://localhost/Praktikum/Prak3/Baecker.php");
 
         echo <<<EOT
         <header>

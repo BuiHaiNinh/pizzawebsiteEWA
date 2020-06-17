@@ -45,7 +45,7 @@ class Fahrer extends Page
         $stmt->bind_param('si', $status, $id);
         $stmt->execute();
 
-        header('Location: http://localhost/Praktikum/Prak2/Fahrer.php');
+        header('Location: http://localhost/Praktikum/Prak3/Fahrer.php');
     }
 
     protected function getViewData()
@@ -78,7 +78,7 @@ class Fahrer extends Page
     {
         $bestellungen = $this->getViewData();
         $this->generatePageHeader('Fahrer');
-        header("Refresh: 5; url=http://localhost/Praktikum/Prak2/Fahrer.php");
+        header("Refresh: 5; url=http://localhost/Praktikum/Prak3/Fahrer.php");
 
         echo <<<EOT
         <meta http-equiv="refresh" content="5" > 
@@ -102,8 +102,7 @@ class Fahrer extends Page
                 return $value;
             }, 0);
 
-            $address = htmlspecialchars(orderedArticles[0]['address']);
-            echo "<h3>Bestellung {$orderedArticles[0]["f_order_id"]}: {$address}. Summe: {$price}</h3>";
+            echo "<h3>Bestellung {$orderedArticles[0]["f_order_id"]}:" .htmlspecialchars($orderedArticles[0]['address']). "Summe: {$price}</h3>";
             foreach ($orderedArticles as $orderedArticle) {
                 $status = intval($orderedArticle['status']);
 

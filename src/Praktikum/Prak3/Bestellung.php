@@ -67,6 +67,7 @@ class Bestellung extends Page
         }
 
         $this->_database->commit();
+
         $_SESSION['order_id'] = $orderID;
         header('Location: http://localhost/Praktikum/Prak3/Bestellung.php');
     }
