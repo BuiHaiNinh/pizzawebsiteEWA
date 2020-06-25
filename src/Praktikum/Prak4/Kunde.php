@@ -65,7 +65,7 @@ class Kunde extends Page
                 case 0:
                     echo <<<EOT
                         <p>Bestellung {$orderedArticle["id"]}: Pizza {$orderedArticle["name"]}</p>
-                        <p>Status: }</p>
+                        <p>Status: Bestellt</p>
                     EOT;
                     break;
 

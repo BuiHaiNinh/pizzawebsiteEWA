@@ -93,6 +93,7 @@ abstract class Page
         <head>
             <meta charset="UTF-8">
             <title>{$headline}</title>
+            <script src="scripts.js"></script>
         </head>
         <body>
         EOT;

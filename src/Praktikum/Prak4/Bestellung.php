@@ -24,9 +24,18 @@ class Bestellung extends Page
         }
 
         // Check variables
-        if (isset($_POST['warenkorb']) && is_array($_POST['warenkorb'])) {
-            $warenkorb = $_POST['warenkorb'];
-            if (count($warenkorb) == 0) {
+        if (isset($_POST['pizzasID']) && is_array($_POST['pizzasID'])) {
+            $pizzasID = $_POST['pizzasID'];
+            if (count($pizzasID) == 0) {
+                return;
+            }
+        } else {
+            return;
+        }
+
+        if (isset($_POST['pizzasUnits']) && is_array($_POST['pizzasUnits'])) {
+            $pizzasUnit = $_POST['pizzasUnits'];
+            if (count($pizzasUnit) == 0) {
                 return;
             }
         } else {
@@ -55,21 +64,27 @@ class Bestellung extends Page
         // Get inserted ID
         $orderID = $this->_database->insert_id;
 
-        foreach ($warenkorb as $pizzaID) {
-            $query = <<<SQL
-            INSERT INTO ordered_articles (f_article_id, f_order_id, status) 
-            VALUE (?, ?, 0) 
-            SQL;
+        for ($i = 0; $i < count($pizzasID); $i++) {
+            $pizzaID = $pizzasID[$i];
+            $unit = $pizzasUnit[$i];
 
-            $stmt = $this->_database->prepare($query);
-            $stmt->bind_param('si', $pizzaID, $orderID);
-            $stmt->execute();
+            for ($n = 0; $n < $unit; $n++) {
+                $query = <<<SQL
+                    INSERT INTO ordered_articles (f_article_id, f_order_id, status) 
+                    VALUE (?, ?, 0) 
+                SQL;
+
+                $stmt = $this->_database->prepare($query);
+                $stmt->bind_param('si', $pizzaID, $orderID);
+                $stmt->execute();
+            }
+
         }
 
         $this->_database->commit();
 
         $_SESSION['order_id'] = $orderID;
-        header('Location: http://localhost/Praktikum/Prak3/Bestellung.php');
+        header('Location: http://localhost/Praktikum/Prak4/Bestellung.php');
     }
 
     protected function getViewData()
@@ -93,7 +108,7 @@ class Bestellung extends Page
 
         (new SpeisekarteBlock($this->_database))->generateView('speisekarte');
 
-        $this->pizzaSelection($articles);
+        $this->pizzaForm();
 
         $this->generatePageFooter();
     }
@@ -111,37 +126,31 @@ class Bestellung extends Page
         }
     }
 
-    /**
-     * @param array $articles
-     */
-    protected function pizzaSelection(array $articles): void
+    protected function pizzaForm(): void
     {
         echo "<form action='Bestellung.php' method='post'>";
-        echo "<label>";
 
-        echo "<select tabindex='0' name='warenkorb[]' multiple size='5'>";
+        echo "<table id='cart-table'>";
+        echo "<tr>";
 
-        $first = true;
-        foreach ($articles as $article) {
-            if ($first) {
-                echo "<option selected value={$article['id']}>" . $article['name'] . "</option>";
-                $first = false;
-            } else {
-                echo "<option  value={$article['id']}>" . $article['name'] . "</option>";
-            }
+        echo "<td>Name</td>";
+        echo "<td>Unit</td>";
+        echo "<td>Prices</td>";
 
-        }
+        echo "</tr>";
+        echo "</table>";
 
-        echo "</select>";
-        echo "</label>";
+        echo "<p id='total-price'>0 €</p>";
+
+        echo "<div id='hiding-input'></div>";
 
         echo <<<EOF
         <label>
-            <input type="text" value="" name="address" placeholder="Ihre Adresse"/>
+            <input id="adress-input" onchange="check()" type="text" value="" name="address" placeholder="Ihre Adresse"/>
         </label>
-        <input tabindex="1" type="reset" name="deleteAll" value="Alle Löschen"/>
+        <input tabindex="1" onclick="clearAll()" type="reset" name="deleteAll" value="Alle Löschen"/>
         <input tabindex="2" type="button" name="delete" value="Löschen"/>
-        <input tabindex="3" type="submit" value="Bestellen"/>
+        <input id="submit-input" tabindex="3" type="submit" value="Bestellen" disabled/>
         EOF;
 
         echo "</form>";
