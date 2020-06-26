@@ -17,35 +17,30 @@ class Kunde extends Page
     protected function processReceivedData()
     {
         parent::processReceivedData();
+        
     }
 
     protected function getViewData()
     {
-        if (isset($_SESSION['order_id'])) {
-            $orderID = $_SESSION['order_id'];
 
-            $orderedArticles = array();
+    }
 
-            $sql = <<<SQL
-            SELECT ordered_articles.id, f_article_id, f_order_id, status, name 
-            FROM ordered_articles 
-                LEFT JOIN article ON f_article_id = article.id
-            WHERE f_order_id = ?
-            SQL;
+    protected function generatePageHeader($headline = "")
+    {
+        $headline = htmlspecialchars($headline);
+        header("Content-type: text/html; charset=UTF-8");
+        echo <<<EOT
+        <!DOCTYPE html>
+        <html lang="de">
+        <head>
+            <meta charset="UTF-8">
+            <title>{$headline}</title>
+        </head>
+        <body onload="init()">
+        EOT;
 
-            $stm = $this->_database->prepare($sql);
-            $stm->bind_param('i', $orderID);
-            $stm->execute();
-            $result = $stm->get_result();
-            if (!$result)
-                throw new Exception("Fehler in Abfrage: " . $this->_database->error);
-            while ($row = $result->fetch_assoc()) {
-                $orderedArticles[] = $row;
-            }
-            $result->free();
-            return $orderedArticles;
-        }
-        return [];
+        // to do: output common beginning of HTML code
+        // including the individual headline
     }
 
     protected function generateView()
@@ -53,59 +48,8 @@ class Kunde extends Page
         $orderedArticles = $this->getViewData();
         $this->generatePageHeader('Kunde');
 
-        echo <<<EOT
-        <header>
-            <h1>Kunde (Lieferstatus)</h1>
-        </header>
-        EOT;
-
-        foreach ($orderedArticles as $orderedArticle) {
-            $status = intval($orderedArticle['status']);
-            switch ($status) {
-                case 0:
-                    echo <<<EOT
-                        <p>Bestellung {$orderedArticle["id"]}: Pizza {$orderedArticle["name"]}</p>
-                        <p>Status: Bestellt</p>
-                    EOT;
-                    break;
-
-                case 1:
-                    echo <<<EOT
-                        <p>Bestellung {$orderedArticle["id"]}: Pizza {$orderedArticle["name"]}</p>
-                        <p>Status: Im Ofen</p>
-                    EOT;
-                    break;
-
-                case 2:
-                    echo <<<EOT
-                        <p>Bestellung {$orderedArticle["id"]}: Pizza {$orderedArticle["name"]}</p>
-                        <p>Status: Gebackt fertig </p>
-                    EOT;
-                    break;
-
-                case 3:
-                    echo <<<EOT
-                        <p>Bestellung {$orderedArticle["id"]}: Pizza {$orderedArticle["name"]}</p>
-                        <p>Status: Gebackt fertig. Warte zum liefern</p>
-                    EOT;
-                    break;
-
-                case 4:
-                    echo <<<EOT
-                        <p>Bestellung {$orderedArticle["id"]}: Pizza {$orderedArticle["name"]}</p>
-                        <p>Status: Unterwegs</p>
-                    EOT;
-                    break;
-
-                case 5:
-                    echo <<<EOT
-                        <p>Bestellung {$orderedArticle["id"]}: Pizza {$orderedArticle["name"]}</p>
-                        <p>Status: Geliefert</p>
-                    EOT;
-                    break;
-            }
-        }
-
+        echo "<script src='StatusUpdate.js'></script>";
+        echo "<div id='bestellungen'></div>";
 
         $this->generatePageFooter();
     }
@@ -123,6 +67,7 @@ class Kunde extends Page
         }
     }
 }
+
 // Here
 Kunde::main();
 
