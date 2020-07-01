@@ -45,7 +45,7 @@ class Fahrer extends Page
         $stmt->bind_param('si', $status, $id);
         $stmt->execute();
 
-        header('Location: http://localhost/Praktikum/Prak3/Fahrer.php');
+        header('Location: http://localhost/Praktikum/Prak4/Fahrer.php');
     }
 
     protected function getViewData()
@@ -78,7 +78,7 @@ class Fahrer extends Page
     {
         $bestellungen = $this->getViewData();
         $this->generatePageHeader('Fahrer');
-        header("Refresh: 5; url=http://localhost/Praktikum/Prak3/Fahrer.php");
+        header("Refresh: 5; url=http://localhost/Praktikum/Prak4/Fahrer.php");
 
         echo <<<EOT
         <meta http-equiv="refresh" content="5" > 
@@ -102,7 +102,7 @@ class Fahrer extends Page
                 return $value;
             }, 0);
 
-            echo "<h3>Bestellung {$orderedArticles[0]["f_order_id"]}:" .htmlspecialchars($orderedArticles[0]['address']). "Summe: {$price}</h3>";
+            echo "<h3>Bestellung {$orderedArticles[0]["f_order_id"]}:" . htmlspecialchars($orderedArticles[0]['address']) . "Summe: {$price}</h3>";
             foreach ($orderedArticles as $orderedArticle) {
                 $status = intval($orderedArticle['status']);
 
@@ -118,7 +118,7 @@ class Fahrer extends Page
                 $isChecked = $status == 2 ? 'checked' : null;
                 echo <<<EOT
             <label>
-                <input type="radio" name="status" value=2 {$isChecked} /> 
+                <input type="radio" name="status" value=2 {$isChecked} onclick="fahrerSubmit(this)" /> 
                 Gebackt fertig. Warte zum liefern
             </label>
             EOT;
@@ -126,7 +126,7 @@ class Fahrer extends Page
                 $isChecked = $status == 3 ? 'checked' : null;
                 echo <<<EOT
             <label>
-                <input type="radio" name="status" value=3 {$isChecked} /> 
+                <input type="radio" name="status" value=3 {$isChecked}  onclick="fahrerSubmit(this)" /> 
                 Unterwegs
             </label>
             EOT;
@@ -134,7 +134,7 @@ class Fahrer extends Page
                 $isChecked = $status == 4 ? 'checked' : null;
                 echo <<<EOT
             <label>
-                <input type="radio" name="status" value=4 {$isChecked} /> 
+                <input type="radio" name="status" value=4 {$isChecked}  onclick="fahrerSubmit(this)"  /> 
                 Geliefert
             </label> 
             EOT;

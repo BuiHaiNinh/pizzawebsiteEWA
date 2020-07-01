@@ -45,7 +45,7 @@ class Baecker extends Page
         $stmt->bind_param('si', $status, $id);
         $stmt->execute();
 
-        header('Location: http://localhost/Praktikum/Prak3/Baecker.php');
+        header('Location: http://localhost/Praktikum/Prak4/Baecker.php');
     }
 
     protected function getViewData()
@@ -66,7 +66,7 @@ class Baecker extends Page
     {
         $orderedArticles = $this->getViewData();
         $this->generatePageHeader('Bäcker');
-        header("Refresh: 5; url=http://localhost/Praktikum/Prak3/Baecker.php");
+        header("Refresh: 5; url=http://localhost/Praktikum/Prak4/Baecker.php");
 
         echo <<<EOT
         <header>
@@ -84,7 +84,7 @@ class Baecker extends Page
             if ($status >= 3)
                 continue;
 
-            echo "<form action=\"Baecker.php\" method=\"post\">";
+            echo "<form id='formid' action=\"Baecker.php\" method=\"post\">";
             echo "<input type='hidden' name='id' value={$orderedArticle['id']} />";
 
             echo <<<EOT
@@ -98,7 +98,7 @@ class Baecker extends Page
             echo <<<EOT
             
             <label>
-                <input type="radio" name="status" value=0 {$isChecked} /> 
+                <input type="radio" name="status" value=0 {$isChecked} onclick="baeckerSubmit(this)" /> 
                 Bestellt
             </label>
             EOT;
@@ -107,7 +107,7 @@ class Baecker extends Page
 
             echo <<<EOT
             <label>
-                <input type="radio" name="status" value=1 {$isChecked} /> 
+                <input type="radio" name="status" value=1 {$isChecked} onclick="baeckerSubmit(this)"/> 
                 Im Ofen
             </label>
             EOT;
@@ -116,7 +116,7 @@ class Baecker extends Page
 
             echo <<<EOT
             <label>
-                <input type="radio" name="status" value=2 {$isChecked} /> 
+                <input type="radio" name="status" value=2 {$isChecked} onclick="baeckerSubmit(this)" /> 
                 Fertig
             </label> 
             EOT;

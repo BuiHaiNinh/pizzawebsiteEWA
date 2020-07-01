@@ -2,7 +2,8 @@
 
 require_once './BlockTemplate.php';
 
-class SpeisekarteBlock extends BlockTemplate {
+class SpeisekarteBlock extends BlockTemplate
+{
     protected function getViewData()
     {
         $articles = array();
@@ -28,9 +29,9 @@ class SpeisekarteBlock extends BlockTemplate {
         echo "<h2>Speisekarte</h2>";
 
         foreach ($articles as $article) {
-            echo "<div>";
+            echo "<div data-id={$article['id']} data-price={$article['price']} data-name={$article['name']}>";
 
-            echo "<img src={$article['picture']} alt='' width='200' height='200'/>";
+            echo "<img src={$article['picture']} alt='' width='200' height='200' onclick='addToCart(this)'/>";
             echo "<p>{$article['name']}</p>";
             echo "<p>{$article['price']} €</p>";
 
