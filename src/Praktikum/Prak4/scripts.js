@@ -180,3 +180,11 @@ function check() {
     submitButton.disabled = !active
 
 }
+
+function baeckerSubmit(input) {
+    input.parentElement.parentElement.parentElement.submit()
+}
+
+function fahrerSubmit(input) {
+    input.parentElement.parentElement.parentElement.submit()
+}

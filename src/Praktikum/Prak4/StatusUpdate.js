@@ -39,6 +39,7 @@ function process(data) {
 }
 
 function init() {
+    "use strict";
     requestData();
     window.setInterval(requestData, 2000);
 }
@@ -46,12 +47,14 @@ function init() {
 let request = new XMLHttpRequest();
 
 function requestData() {
+    "use strict";
     request.open("GET", "KundenStatus.php");
     request.onreadystatechange = processData;
     request.send(null);
 }
 
 function processData() {
+    "use strict";
     if (request.readyState === 4) { // Uebertragung = DONE
         if (request.status === 200) {   // HTTP-Status = OK
             if (request.responseText != null)
@@ -60,3 +63,4 @@ function processData() {
         } else console.error("Uebertragung fehlgeschlagen");
     } else ;
 }
+
