@@ -44,8 +44,6 @@ class Kunde extends Page
             }
             $result->free();
             return $orderedArticles;
-        } else {
-            echo("Keine Session");
         }
         return [];
     }

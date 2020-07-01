@@ -139,44 +139,9 @@ class Bestellung extends Page
         <label>
             <input type="text" value="" name="address" placeholder="Ihre Adresse"/>
         </label>
-        
-        <!--        shoping cart-->
-        <table class="shopping_cart">
-          <tr> 
-            <th>Name</th> 
-            <th>Quantity</th> 
-            <th>Sum</th> 
-          </tr> 
-          
-          <tr> 
-            <td>Row 1111
-            <td>Row 2</td>
-            <td>Row 3</td>
-            <td>
-                <input tabindex="1" type="button" name="delete" value="löschen">
-                <input tabindex="2" type="button" name="delete_all" value="alles löschen">
-            </td> 
-          </tr> 
-          
-          <tr> 
-            <td>Row 1111             
-            <td>Row 2</td>
-            <td>Row 3</td>
-            <td>
-                <input tabindex="1" type="button" name="delete" value="löschen">
-                <input tabindex="2" type="button" name="delete_all" value="alles löschen">
-            </td>  
-          </tr>         
-        </table>
-        
-        <br>      
-          <span class="total">Total Price: </span>
-        <br>
-        
         <input tabindex="1" type="reset" name="deleteAll" value="Alle Löschen"/>
         <input tabindex="2" type="button" name="delete" value="Löschen"/>
         <input tabindex="3" type="submit" value="Bestellen"/>
-
         EOF;
 
         echo "</form>";
