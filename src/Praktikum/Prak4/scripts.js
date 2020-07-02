@@ -181,7 +181,7 @@ function check() {
 }
 
 function redirectPage(input) {
-    input.parentElement.submit();
+    //input.parentElement.submit;
     window.open('Kunde.php');
 }
 
