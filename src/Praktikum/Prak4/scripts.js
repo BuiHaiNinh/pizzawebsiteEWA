@@ -178,7 +178,11 @@ function check() {
         active = false;
 
     submitButton.disabled = !active
+}
 
+function redirectPage(input) {
+    input.parentElement.submit();
+    window.open('Kunde.php');
 }
 
 function baeckerSubmit(input) {

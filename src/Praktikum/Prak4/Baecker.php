@@ -126,7 +126,7 @@ class Baecker extends Page
             EOT;
 
             echo "<br>";
-            echo "<input type=\"submit\" value=\"Ändern\"/>";
+            //echo "<input type=\"submit\" value=\"Ändern\"/>";
             echo "</form>";
         }
 

@@ -155,7 +155,7 @@ class Bestellung extends Page
         </label>
         <input tabindex="1" onclick="clearAll()" type="reset" name="deleteAll" value="Alle Löschen"/>
         <input tabindex="2" type="button" name="delete" value="Löschen"/>
-        <input id="submit-input" tabindex="3" type="submit" value="Bestellen" disabled/>
+        <input id="submit-input" tabindex="3" type="button" onclick="redirectPage(this)" value="Bestellen" disabled/>
         EOF;
 
         echo "</div>";
