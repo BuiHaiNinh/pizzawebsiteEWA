@@ -26,14 +26,12 @@ class SpeisekarteBlock extends BlockTemplate
         }
         echo "<div $id>\n";
 
-        echo "<h2>Speisekarte</h2>";
-
         foreach ($articles as $article) {
-            echo "<div data-id={$article['id']} data-price={$article['price']} data-name={$article['name']}>";
+            echo "<div class='Card' data-id={$article['id']} data-price={$article['price']} data-name={$article['name']}>";
 
-            echo "<img src={$article['picture']} alt='' width='200' height='200' onclick='addToCart(this)'/>";
-            echo "<p>{$article['name']}</p>";
-            echo "<p>{$article['price']} €</p>";
+            echo "<img class='PizzaImage' src={$article['picture']} alt='' width='200' height='200' onclick='addToCart(this)'/>";
+            echo "<p class='PizzaName'>{$article['name']}</p>";
+            echo "<p class='PizzaPrice'>{$article['price']} €</p>";
 
             echo "</div>";
         }
