@@ -1,0 +1,59 @@
+
+#title {
+    text-align: center;
+    color: white;
+    background-color: coral;
+}
+
+#speisekarte {
+    text-align: center;
+}
+div.Card {
+    display: inline-block;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    round-clip: true;
+    overflow: hidden;
+    margin: 8px;
+}
+
+.center {
+    text-align: center;
+}
+
+image.PizzaImage {
+}
+
+div.BestellungForm {
+    padding: 8px;
+    display: inline-block;
+    border: 1px solid black;
+}
+
+p.PizzaName {
+    text-align: center;
+    font-size: 22px;
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+p.PizzaPrice {
+    text-align: center;
+    font-size: 22px;
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table, td, tr {
+    border: 1px solid black;
+}
+
+td, tr {
+    padding: 4px;
+    align-content: center;
+    align-items: center;
+}

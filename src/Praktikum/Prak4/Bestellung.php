@@ -106,6 +106,8 @@ class Bestellung extends Page
         $articles = $this->getViewData();
         $this->generatePageHeader('Bestellung');
 
+        echo "<h2 id='title'>Speisekarte</h2>";
+
         (new SpeisekarteBlock($this->_database))->generateView('speisekarte');
 
         $this->pizzaForm();
@@ -130,12 +132,15 @@ class Bestellung extends Page
     {
         echo "<form action='Bestellung.php' method='post'>";
 
-        echo "<table id='cart-table'>";
+        echo "<div class='center'>";
+        echo "<div class='BestellungForm'>";
+        echo "<table  id='cart-table'>";
         echo "<tr>";
 
         echo "<td>Name</td>";
         echo "<td>Unit</td>";
         echo "<td>Prices</td>";
+        echo "<td>Actions</td>";
 
         echo "</tr>";
         echo "</table>";
@@ -152,6 +157,9 @@ class Bestellung extends Page
         <input tabindex="2" type="button" name="delete" value="Löschen"/>
         <input id="submit-input" tabindex="3" type="submit" value="Bestellen" disabled/>
         EOF;
+
+        echo "</div>";
+        echo "</div>";
 
         echo "</form>";
     }

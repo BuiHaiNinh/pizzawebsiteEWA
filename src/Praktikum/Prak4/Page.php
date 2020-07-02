@@ -92,8 +92,10 @@ abstract class Page
         <html lang="de">
         <head>
             <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
             <title>{$headline}</title>
             <script src="scripts.js"></script>
+            <link rel="stylesheet" type="text/css" href="style.css" />
         </head>
         <body>
         EOT;
