@@ -35,6 +35,7 @@ class Kunde extends Page
         <head>
             <meta charset="UTF-8">
             <title>{$headline}</title>
+            <link rel="stylesheet" type="text/css" href="style.css" />
         </head>
         <body onload="init()">
         EOT;
@@ -47,6 +48,11 @@ class Kunde extends Page
     {
         $orderedArticles = $this->getViewData();
         $this->generatePageHeader('Kunde');
+        echo <<<EOT
+        <header>
+            <h1 id="title">Kundeseite</h1>
+        </header>
+        EOT;
 
         echo "<script src='StatusUpdate.js'></script>";
         echo "<div id='bestellungen'></div>";

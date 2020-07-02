@@ -66,11 +66,11 @@ class Baecker extends Page
     {
         $orderedArticles = $this->getViewData();
         $this->generatePageHeader('Bäcker');
-        header("Refresh: 5; url=http://localhost/Praktikum/Prak4/Baecker.php");
+        //header("Refresh: 5; url=http://localhost/Praktikum/Prak4/Baecker.php");
 
         echo <<<EOT
         <header>
-            <h1>Bäcker</h1>
+            <h1 id="title">Bäcker</h1>
         </header>
         EOT;
 
@@ -79,11 +79,13 @@ class Baecker extends Page
             return;
         }
 
+        echo "<table>";
         foreach ($orderedArticles as $orderedArticle) {
             $status = intval($orderedArticle['status']);
             if ($status >= 3)
                 continue;
-
+            echo "<tr>";
+            echo "<td class='Baecker_list'>";
             echo "<form id='formid' action=\"Baecker.php\" method=\"post\">";
             echo "<input type='hidden' name='id' value={$orderedArticle['id']} />";
 
@@ -125,11 +127,11 @@ class Baecker extends Page
             </section>
             EOT;
 
-            echo "<br>";
-            //echo "<input type=\"submit\" value=\"Ändern\"/>";
             echo "</form>";
+            echo "</td>";
+            echo "</tr>";
         }
-
+        echo "</nav>";
 
         $this->generatePageFooter();
     }

@@ -83,7 +83,7 @@ class Fahrer extends Page
         echo <<<EOT
         <meta http-equiv="refresh" content="5" > 
         <header>
-            <h1>Fahrer</h1>
+            <h1 id="title">Fahrer</h1>
         </header>
         EOT;
 

@@ -1,3 +1,7 @@
+body {
+    background-image: url("wallpaper.gif");
+    background-color: transparent;
+}
 
 #title {
     text-align: center;
@@ -8,6 +12,7 @@
 #speisekarte {
     text-align: center;
 }
+
 div.Card {
     display: inline-block;
     border-radius: 8px;
@@ -44,8 +49,12 @@ p.PizzaPrice {
     margin-block-end: 0;
 }
 
+td.Baecker_list{
+
+}
+
 table {
-    border-collapse: collapse;
+    text-align: center;
 }
 
 table, td, tr {

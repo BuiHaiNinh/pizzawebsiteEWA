@@ -28,7 +28,6 @@ class SpeisekarteBlock extends BlockTemplate
 
         foreach ($articles as $article) {
             echo "<div class='Card' data-id={$article['id']} data-price={$article['price']} data-name={$article['name']}>";
-
             echo "<img class='PizzaImage' src={$article['picture']} alt='' width='200' height='200' onclick='addToCart(this)'/>";
             echo "<p class='PizzaName'>{$article['name']}</p>";
             echo "<p class='PizzaPrice'>{$article['price']} €</p>";

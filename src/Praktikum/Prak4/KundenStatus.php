@@ -51,9 +51,7 @@ class Kunde extends Page
     protected function generateView()
     {
         $orderedArticles = $this->getViewData();
-
         header("Content-Type: application/json; charset=UTF-8");
-
         $data = json_encode($orderedArticles);
         echo $data;
     }
