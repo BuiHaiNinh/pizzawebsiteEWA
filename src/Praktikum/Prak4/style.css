@@ -1,8 +1,4 @@
-body {
-    background-image: url("wallpaper.gif");
-    background-color: transparent;
-}
-
+/* Layout */
 #title {
     text-align: center;
     color: white;
@@ -20,16 +16,6 @@ div.Card {
     round-clip: true;
     overflow: hidden;
     margin: 8px;
-}
-
-div.Baecker_list {
-    /*display: inline-block;*/
-    border-radius: 8px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    round-clip: true;
-    margin: 8px;
-    border: 8px;
-    padding: 8px;
 }
 
 .center {
@@ -75,10 +61,30 @@ td, tr {
 
 section {
     overflow-y: scroll;
-    height: 200px;
+    height: 250px;
     padding: 5px 50px 5px 50px;
+    margin: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-p, h1, h2, h3, h4 {
+p, h1, h2, h3, h4, h5, h6 {
     text-align: center;
+}
+
+/** Schmale Bildschirme - Handy? **/
+@media only screen and (max-width: 414px){
+    h1, h2, h3, h4, h5, h6 {font-size: 1.6em}
+    nav { display: inline-block;}
+    body {
+        background-color: none;
+    }
+}
+
+/** Tablet !? **/
+@media only screen and (min-width: 415px){
+    h1, h2, h3, h4, h5, h6 {font-size: 1.6em}
+    nav { display: inline-block;}
+    body {
+        background-color: #d5f4e6;
+    }
 }

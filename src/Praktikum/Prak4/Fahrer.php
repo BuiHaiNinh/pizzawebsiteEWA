@@ -78,10 +78,9 @@ class Fahrer extends Page
     {
         $bestellungen = $this->getViewData();
         $this->generatePageHeader('Fahrer');
-        header("Refresh: 5; url=http://localhost/Praktikum/Prak4/Fahrer.php");
+        //header("Refresh: 5; url=http://localhost/Praktikum/Prak4/Fahrer.php");
 
         echo <<<EOT
-        <meta http-equiv="refresh" content="5" > 
         <header>
             <h1 id="title">Fahrer</h1>
         </header>
@@ -102,7 +101,8 @@ class Fahrer extends Page
                 return $value;
             }, 0);
 
-            echo "<h3>Bestellung {$orderedArticles[0]["f_order_id"]}:" . htmlspecialchars($orderedArticles[0]['address']) . "Summe: {$price}</h3>";
+            echo "<h3>Bestellung {$orderedArticles[0]["f_order_id"]}:"." - ". htmlspecialchars($orderedArticles[0]['address'])." - "." Summe: {$price}</h3>";
+
             foreach ($orderedArticles as $orderedArticle) {
                 $status = intval($orderedArticle['status']);
 
@@ -120,7 +120,7 @@ class Fahrer extends Page
             <label>
                 <input type="radio" name="status" value=2 {$isChecked} onclick="fahrerSubmit(this)" /> 
                 Gebackt fertig. Warte zum liefern
-            </label>
+            </label><br>
             EOT;
 
                 $isChecked = $status == 3 ? 'checked' : null;
@@ -128,7 +128,7 @@ class Fahrer extends Page
             <label>
                 <input type="radio" name="status" value=3 {$isChecked}  onclick="fahrerSubmit(this)" /> 
                 Unterwegs
-            </label>
+            </label><br>
             EOT;
 
                 $isChecked = $status == 4 ? 'checked' : null;
@@ -136,15 +136,13 @@ class Fahrer extends Page
             <label>
                 <input type="radio" name="status" value=4 {$isChecked}  onclick="fahrerSubmit(this)"  /> 
                 Geliefert
-            </label> 
+            </label><br>
             EOT;
 
                 echo <<<EOT
             </section>
             EOT;
-
                 echo "<br>";
-                echo "<input type=\"submit\" value=\"Ändern\"/>";
                 echo "</form>";
             }
         }

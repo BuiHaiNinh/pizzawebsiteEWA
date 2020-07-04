@@ -79,7 +79,7 @@ class Baecker extends Page
             return;
         }
 
-        echo "<section class='backer_section'>";
+        echo "<section>";
         foreach ($orderedArticles as $orderedArticle) {
             $status = intval($orderedArticle['status']);
             if ($status >= 3)
