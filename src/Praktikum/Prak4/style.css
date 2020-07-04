@@ -28,7 +28,6 @@ div.Card {
 
 div.BestellungForm {
     padding: 8px;
-    display: inline-block;
     border: 1px solid black;
 }
 
@@ -59,7 +58,7 @@ section {
 /** Schmale Bildschirme - Handy? **/
 @media only screen and (max-width: 414px){
     h1, h2, h3, h4, h5, h6, p, label {font-size: 0.8em}
-    nav { display: inline-block;}
+    div.BestellungForm { display: inline-block;}
     body {
         background-color: none;
     }
@@ -68,7 +67,6 @@ section {
 /** Tablet !? **/
 @media only screen and (min-width: 415px){
     h1, h2, h3, h4, h5, h6, p, label {font-size: 1.6em}
-    nav { display: inline-block;}
     body {
         background-color: #d5f4e6;
     }

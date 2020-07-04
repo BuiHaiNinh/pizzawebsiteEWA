@@ -78,7 +78,7 @@ class Fahrer extends Page
     {
         $bestellungen = $this->getViewData();
         $this->generatePageHeader('Fahrer');
-        //header("Refresh: 5; url=http://localhost/Praktikum/Prak4/Fahrer.php");
+        header("Refresh: 5; url=http://localhost/Praktikum/Prak4/Fahrer.php");
 
         echo <<<EOT
         <header>
