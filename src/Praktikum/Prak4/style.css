@@ -60,6 +60,7 @@ td, tr {
 }
 
 section {
+    text-align: center;
     overflow-y: scroll;
     height: 250px;
     padding: 5px 50px 5px 50px;
@@ -73,7 +74,7 @@ p, h1, h2, h3, h4, h5, h6 {
 
 /** Schmale Bildschirme - Handy? **/
 @media only screen and (max-width: 414px){
-    h1, h2, h3, h4, h5, h6 {font-size: 1.6em}
+    h1, h2, h3, h4, h5, h6 {font-size: 0.8em}
     nav { display: inline-block;}
     body {
         background-color: none;
