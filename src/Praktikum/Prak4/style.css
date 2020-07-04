@@ -5,6 +5,10 @@
     background-color: coral;
 }
 
+p, label, table, h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+}
+
 #speisekarte {
     text-align: center;
 }
@@ -22,31 +26,15 @@ div.Card {
     text-align: center;
 }
 
-image.PizzaImage {
-}
-
 div.BestellungForm {
     padding: 8px;
     display: inline-block;
     border: 1px solid black;
 }
 
-p.PizzaName {
-    text-align: center;
-    font-size: 22px;
+p.PizzaName, p.PizzaPrice {
     margin-block-start: 0;
     margin-block-end: 0;
-}
-
-p.PizzaPrice {
-    text-align: center;
-    font-size: 22px;
-    margin-block-start: 0;
-    margin-block-end: 0;
-}
-
-table {
-    text-align: center;
 }
 
 table, td, tr {
@@ -61,20 +49,16 @@ td, tr {
 
 section {
     text-align: center;
-    overflow-y: scroll;
-    height: 250px;
+    height: 275px;
     padding: 5px 50px 5px 50px;
     margin: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-p, h1, h2, h3, h4, h5, h6 {
-    text-align: center;
-}
 
 /** Schmale Bildschirme - Handy? **/
 @media only screen and (max-width: 414px){
-    h1, h2, h3, h4, h5, h6 {font-size: 0.8em}
+    h1, h2, h3, h4, h5, h6, p, label {font-size: 0.8em}
     nav { display: inline-block;}
     body {
         background-color: none;
@@ -83,7 +67,7 @@ p, h1, h2, h3, h4, h5, h6 {
 
 /** Tablet !? **/
 @media only screen and (min-width: 415px){
-    h1, h2, h3, h4, h5, h6 {font-size: 1.6em}
+    h1, h2, h3, h4, h5, h6, p, label {font-size: 1.6em}
     nav { display: inline-block;}
     body {
         background-color: #d5f4e6;
