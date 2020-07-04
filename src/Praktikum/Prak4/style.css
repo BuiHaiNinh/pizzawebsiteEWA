@@ -22,6 +22,16 @@ div.Card {
     margin: 8px;
 }
 
+div.Baecker_list {
+    /*display: inline-block;*/
+    border-radius: 8px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    round-clip: true;
+    margin: 8px;
+    border: 8px;
+    padding: 8px;
+}
+
 .center {
     text-align: center;
 }
@@ -49,10 +59,6 @@ p.PizzaPrice {
     margin-block-end: 0;
 }
 
-td.Baecker_list{
-
-}
-
 table {
     text-align: center;
 }
@@ -65,4 +71,14 @@ td, tr {
     padding: 4px;
     align-content: center;
     align-items: center;
+}
+
+section {
+    overflow-y: scroll;
+    height: 200px;
+    padding: 5px 50px 5px 50px;
+}
+
+p, h1, h2, h3, h4 {
+    text-align: center;
 }

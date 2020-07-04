@@ -79,13 +79,13 @@ class Baecker extends Page
             return;
         }
 
-        echo "<table>";
+        echo "<section class='backer_section'>";
         foreach ($orderedArticles as $orderedArticle) {
             $status = intval($orderedArticle['status']);
             if ($status >= 3)
                 continue;
-            echo "<tr>";
-            echo "<td class='Baecker_list'>";
+
+            echo "<div class='Baecker_list'>";
             echo "<form id='formid' action=\"Baecker.php\" method=\"post\">";
             echo "<input type='hidden' name='id' value={$orderedArticle['id']} />";
 
@@ -102,7 +102,7 @@ class Baecker extends Page
             <label>
                 <input type="radio" name="status" value=0 {$isChecked} onclick="baeckerSubmit(this)" /> 
                 Bestellt
-            </label>
+            </label><br>
             EOT;
 
             $isChecked = $status == 1 ? 'checked' : null;
@@ -111,7 +111,7 @@ class Baecker extends Page
             <label>
                 <input type="radio" name="status" value=1 {$isChecked} onclick="baeckerSubmit(this)"/> 
                 Im Ofen
-            </label>
+            </label><br>
             EOT;
 
             $isChecked = $status == 2 ? 'checked' : null;
@@ -120,7 +120,7 @@ class Baecker extends Page
             <label>
                 <input type="radio" name="status" value=2 {$isChecked} onclick="baeckerSubmit(this)" /> 
                 Fertig
-            </label> 
+            </label><br>
             EOT;
 
             echo <<<EOT
@@ -128,10 +128,9 @@ class Baecker extends Page
             EOT;
 
             echo "</form>";
-            echo "</td>";
-            echo "</tr>";
+            echo "</div>";
         }
-        echo "</nav>";
+        echo "</section>";
 
         $this->generatePageFooter();
     }

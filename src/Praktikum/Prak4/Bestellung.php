@@ -5,7 +5,6 @@ require_once './SpeisekarteBlock.php';
 
 class Bestellung extends Page
 {
-
     protected function __construct()
     {
         parent::__construct();
@@ -160,7 +159,6 @@ class Bestellung extends Page
 
         echo "</div>";
         echo "</div>";
-
         echo "</form>";
     }
 }
