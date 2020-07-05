@@ -1,4 +1,4 @@
-/* Layout */
+/*----------- Layout -----------*/
 #title {
     text-align: center;
     color: white;
@@ -53,17 +53,39 @@ section {
     margin: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+/*------ navigation_menu --------*/
+#navigation_menu_ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
 
+#navigation_menu {
+    float: left;
+}
 
+#navigation_menu a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+#navigation_menu a:hover {
+    background-color: #88B04B;
+}
+
+/*------ Media Queries --------*/
 /** Schmale Bildschirme - Handy? **/
 @media only screen and (max-width: 414px){
     h1, h2, h3, h4, h5, h6, p, label {font-size: 0.8em}
     div.BestellungForm { display: inline-block;}
-    body {
-        background-color: none;
-    }
+    #navigation_menu a { display: inline-block;}
+    body {background-color: none;}
 }
-
 /** Tablet !? **/
 @media only screen and (min-width: 415px){
     h1, h2, h3, h4, h5, h6, p, label {font-size: 1.6em}

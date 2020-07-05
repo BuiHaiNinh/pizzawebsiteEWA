@@ -98,6 +98,15 @@ abstract class Page
             <link rel="stylesheet" type="text/css" href="style.css" />
         </head>
         <body>
+            <nav>
+              <ul id="navigation_menu_ul">
+                  <li id="navigation_menu"><a href="Bestellung.php">Bestellung</a></li>
+                  <li id="navigation_menu"><a href="Baecker.php">Bäcker</a></li>
+                  <li id="navigation_menu"><a href="Fahrer.php">Fahrer</a></li>
+                  <li id="navigation_menu"><a href="Kunde.php">Kunde</a></li>
+                  <li id="navigation_menu"><a href="KundenStatus.php">KundenStatus</a></li
+              </ul>
+            </nav>
         EOT;
 
         // to do: output common beginning of HTML code
