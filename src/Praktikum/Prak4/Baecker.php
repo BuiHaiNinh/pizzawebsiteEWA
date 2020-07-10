@@ -90,7 +90,7 @@ class Baecker extends Page
             echo "<input type='hidden' name='id' value={$orderedArticle['id']} />";
 
             echo <<<EOT
-            <section>
+            <section class="baecker_item">
                 <h2>Bestellung {$orderedArticle["id"]}: Pizza {$orderedArticle["name"]}</h2>
                 <p>Status:</p>
             EOT;

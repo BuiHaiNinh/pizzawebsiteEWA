@@ -110,7 +110,7 @@ class Fahrer extends Page
                 echo "<input type='hidden' name='id' value={$orderedArticle['id']} />";
 
                 echo <<<EOT
-                <section>
+                <section class="baecker_item">
                 <h5>Pizza Nr.{$orderedArticle["id"]}: Pizza {$orderedArticle["name"]}</h5>
                 <p>Status:</p>
             EOT;
