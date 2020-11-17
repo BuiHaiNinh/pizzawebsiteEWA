@@ -9,7 +9,6 @@ function process(data) {
     const statusStr = [
         'Bestellt',
         'Im Ofen',
-        'Gebackt fertig',
         'Gebackt fertig. Warte zum liefern.',
         'Unterwegs',
         'Geliefert',
@@ -58,9 +57,10 @@ function processData() {
     if (request.readyState === 4) { // Uebertragung = DONE
         if (request.status === 200) {   // HTTP-Status = OK
             if (request.responseText != null)
-                process(JSON.parse(request.responseText));// Daten verarbeiten
+                process(JSON.parse(request.responseText));// Daten verarbeiten durch DOM
             else console.error("Dokument ist leer");
         } else console.error("Uebertragung fehlgeschlagen");
     } else ;
 }
 
+//window.onload = init() 

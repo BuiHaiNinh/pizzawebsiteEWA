@@ -105,7 +105,7 @@ class Bestellung extends Page
         $articles = $this->getViewData();
         $this->generatePageHeader('Bestellung');
 
-        echo "<h2 id='title'>Bestellung</h2>";
+        echo "<h2 id='title'>Bestellung </h2>";
 
         (new SpeisekarteBlock($this->_database))->generateView('speisekarte');
 
